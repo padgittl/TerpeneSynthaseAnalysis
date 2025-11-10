@@ -1,0 +1,154 @@
+cd /path/to/all_mutations/swissmodel
+load EH23a.chr5.v1.g077620.t1_mut76099415_2025-09-30/model/05/model.pdb, mut
+load EH23a.chr5.v1.g077620.t1_original_2025-09-30/model/01/model.pdb, orig
+load 2ONG.pdb
+align orig, 2ONG
+align mut, 2ONG
+select ligand_ref, 2ONG and resn F3P
+select pocket_ref, byres (2ONG within 4 of ligand_ref)
+select pocket_model_orig, byres (orig within 4 of ligand_ref)
+select pocket_model_mut, byres (mut within 4 of ligand_ref)
+select metal_ref, 2ONG and resn MN
+select pocket_metal_ref, byres (2ONG within 4 of metal_ref)
+select pocket_metal_model_orig, byres (orig within 4 of metal_ref)
+select pocket_metal_model_mut, byres (mut within 4 of metal_ref)
+select res542_mut, mut and resi 542 and name CA
+select res542_orig, orig and resi 542 and name CA
+show sticks, pocket_model_mut
+show sticks, res542_mut
+show sticks, pocket_model_orig
+show sticks, res542_orig
+color violet, pocket_model_mut
+color purple, res542_mut
+label res542_mut, "R542"
+select site_focus, ligand_ref or metal_ref or pocket_model_orig or pocket_model_mut or res542_orig or res542_mut
+zoom site_focus, buffer=1
+label res542_orig, "Q542"
+dist between_mutants_R542, res542_orig, res542_mut
+align mut, orig
+set cartoon_transparency, 0.6
+hide surface, 2ONG
+hide surface, mut
+hide surface, orig
+label ligand_ref and name C1, "Ligand"
+bg_color white
+zoom (ligand_ref or pocket_ref or pocket_model_mut or res542_mut or pocket_model_orig or res542_orig), 1
+color gray80, 2ONG
+color marine, mut
+zoom site_focus, buffer=1
+remove chain B
+zoom (ligand_ref or metal_ref or pocket_model_mut or pocket_metal_model_mut or pocket_model_orig or pocket_metal_model_orig), 1
+set cartoon_transparency, 0.6
+color red, ligand_ref
+color orange, res542_mut
+color magenta, res542_orig
+select res542_orig, orig and resi 542 and name CA
+select res542_mut, mut and resi 542 and name CA
+color gray80, 2ONG
+color marine, mut
+color gray80, 2ONG
+hide surface, 2ONG
+color red, ligand_ref
+color orange, res542_mut
+color orange, res542_orig
+color marine, pocket_metal_model_mut
+set label_color, black
+set label_font_id, 7
+set label_size, 18
+set sphere_scale, 0.5
+set_color manganese_color, [0.6, 0.4, 0.8]
+color manganese_color, resn MN
+hide labels, ligand_ref
+zoom (ligand_ref or metal_ref or pocket_model_mut or pocket_metal_model_mut or pocket_model_orig or pocket_metal_model_orig), 1
+zoom (ligand_ref or metal_ref or pocket_model_mut or pocket_metal_model_mut or pocket_model_orig or pocket_metal_model_orig), 0.5
+zoom (ligand_ref or metal_ref or pocket_model_mut or pocket_metal_model_mut or pocket_model_orig or pocket_metal_model_orig), 0.2
+
+
+color salmon, orig
+color wheat, orig
+color chartreuse, orig
+color deeppurple, orig
+color orange, orig
+color tv_orange, orig
+color lightorange, orig
+set_color soft_purple, [0.6, 0.45, 0.7]
+color soft_purple, orig
+set_color lavender, [0.7, 0.6, 0.85]
+color lavender, orig
+set_color muted_purple, [0.5, 0.4, 0.6]
+color muted_purple, orig
+set_color plum_pale, [0.65, 0.5, 0.6]
+color plum_pale, orig
+color muted_purple, orig
+select res518A_2ONG, 2ONG and resi 518 and name CA
+
+       color tv_orange, orig  
+       set_color soft_purple, [0.6, 0.45, 0.7]
+       color soft_purple, orig
+       set_color lavender, [0.7, 0.6, 0.85]
+       color lavender, orig
+       set_color muted_purple, [0.5, 0.4, 0.6]
+       color muted_purple, orig
+       set_color plum_pale, [0.65, 0.5, 0.6]
+       hide spheres
+       show spheres, metal_ref
+       set sphere_scale, 0.5, metal_ref
+       set_color evergreen, [0.0, 0.3, 0.1]
+       color evergreen, ligand_ref
+       set_color muted_olive, [0.4, 0.5, 0.3]
+       color muted_olive, ligand_ref
+       set_color tomato, [1.0, 0.39, 0.28]
+       color salmon, ligand_ref
+       color tomato, ligand_ref
+       hide surface
+       select res518A_2ONG, 2ONG and resi 518 and name CA
+       show sticks, res518A_2ONG
+       color magenta, res518A_2ONG
+       label res518A_2ONG, "H518"
+       set stick_transparency, 0.5, ligand_ref
+       set stick_transparency, 0.2, ligand_ref
+       set stick_transparency, 0, ligand_ref
+       set stick_transparency, 0.5, pocket_model_orig
+       set stick_transparency, 0.5, pocket_model_mut
+       set stick_transparency, 0.2, pocket_model_orig
+       set stick_transparency, 0.2, pocket_model_mut
+       set stick_transparency, 0.5, pocket_model_mut
+       set stick_transparency, 0.5, pocket_model_orig
+       orient ligand_ref or metal_ref
+       zoom ligand_ref or metal_ref, buffer=4
+       zoom ligand_ref or metal_ref, buffer=8
+       set label_size, 24
+       png overlaid_v1_600dpi.png, dpi=600
+
+       PyMOL>png overlaid_v1_600dpi.png, dpi=600
+       PyMOL>png overlaid_v2_600dpi.png, dpi=600
+ ScenePNG: wrote 2034x978 pixel image to file "overlaid_v2_600dpi.png".
+PyMOL>iterate pocket_model_mut and name CA, print(resn, resi, chain)
+ARG 284 A
+TRP 293 A
+TYR 314 A
+ILE 317 A
+THR 318 A
+ASP 321 A
+GLU 399 A
+VAL 422 A
+ARG 463 A
+ASN 466 A
+GLU 474 A
+LYS 482 A
+TYR 541 A
+HIS 547 A
+ Iterate: iterated over 14 atoms.
+PyMOL>iterate pocket_model_orig and name CA, print(resn, resi, chain)
+ARG 284 A
+TRP 293 A
+TYR 314 A
+ASP 321 A
+VAL 422 A
+ARG 463 A
+ASN 466 A
+ASP 467 A
+PHE 533 A
+TYR 541 A
+HIS 547 A
+ Iterate: iterated over 11 atoms.
